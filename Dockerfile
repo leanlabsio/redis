@@ -4,4 +4,10 @@ RUN apk-install redis
 
 EXPOSE 6379
 
-CMD ["redis-server"]
+ADD ./build.sh /tmp/build.sh
+
+ENTRYPOINT ["/bin/sh", "/tmp/build.sh"]
+
+VOLUME ["/data"]
+
+CMD ["redis-server","/etc/redis.conf"]
